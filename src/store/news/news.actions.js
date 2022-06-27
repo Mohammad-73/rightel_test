@@ -1,5 +1,11 @@
 import axios from "axios";
 
+export const startLoading = () => {
+  return {
+    type: "start-loading",
+  };
+};
+
 export function loadPosts() {
   return async (dispatch) => {
     function onSuccess(success) {
