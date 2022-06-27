@@ -13,7 +13,7 @@ export function loadPosts() {
       return success;
     }
     function onError(error) {
-      dispatch({ type: "start-loading", error });
+      dispatch({ type: "load-error", error });
       return error;
     }
     try {
