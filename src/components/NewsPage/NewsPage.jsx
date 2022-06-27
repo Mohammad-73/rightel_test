@@ -4,14 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadPosts, startLoading } from "../../store/news/news.actions";
 import OnErrorPost from "../OnErrorPost/OnErrorPost";
 import PostSkeleton from "../PostSkeleton/PostSkeleton";
+import PostCard from "../PostCard/PostCard";
 import classes from "./NewsPage.module.scss";
+import PaginationRounded from "../Pagination/Pagination";
+import usePagination from "../../hooks/usePagination";
 
 const NewsPage = () => {
+  const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const { loading, items, error } = news;
-  console.log("log>", items);
-  const dispatch = useDispatch();
   const [reloadPosts, setReloadPosts] = useState(true);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(24);
+  const _DATA = usePagination(items?.data?.articles, perPage);
 
   useEffect(() => {
     if (reloadPosts) {
@@ -24,6 +29,12 @@ const NewsPage = () => {
   const handleReloadPosts = () => {
     setReloadPosts(true);
   };
+
+  const handlePageChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
   return (
     <div className={classes.root}>
       {error ? (
@@ -37,7 +48,22 @@ const NewsPage = () => {
           ))}
         </Grid>
       ) : (
-        items?.data?.posts?.map((item, index) => <h2>{item.title}</h2>)
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          {_DATA?.currentData()?.map((item, index) => (
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <PostCard item={item} />
+            </Grid>
+          ))}
+          <PaginationRounded
+            perPage={perPage}
+            count={items?.data?.articles}
+            page={page}
+            handlePageChange={handlePageChange}
+            size="large"
+            variant="outlined"
+            shape="rounded"
+          />
+        </Grid>
       )}
     </div>
   );
