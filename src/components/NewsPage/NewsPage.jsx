@@ -12,22 +12,19 @@ import usePagination from "../../hooks/usePagination";
 const NewsPage = () => {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
-  const { loading, items, error } = news;
+  const { loading, items, error, searchQuery } = news;
   const [reloadPosts, setReloadPosts] = useState(true);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(24);
   const _DATA = usePagination(items?.data?.articles, perPage);
 
   useEffect(() => {
-    if (reloadPosts) {
-      dispatch(startLoading());
-      dispatch(loadPosts());
-    }
-    setReloadPosts(false);
-  }, [reloadPosts]);
+    dispatch(startLoading());
+    dispatch(loadPosts(searchQuery));
+  }, [reloadPosts, searchQuery]);
 
   const handleReloadPosts = () => {
-    setReloadPosts(true);
+    setReloadPosts(!reloadPosts);
   };
 
   const handlePageChange = (e, p) => {
