@@ -1,9 +1,14 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import NewsPage from "../NewsPage/NewsPage";
 
 const Content = () => {
   return (
     <div>
-      <h1>Content</h1>
+      <Routes>
+        <Route path="/" exact element={<NewsPage />} />
+        {/* <Route path="/student" exact element={<StudentPage />} /> */}
+      </Routes>
     </div>
   );
 };
