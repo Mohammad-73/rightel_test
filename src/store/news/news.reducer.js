@@ -2,6 +2,7 @@ const initialState = {
   loading: false,
   items: [],
   error: false,
+  searchQuery: "",
 };
 function newsReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +14,9 @@ function newsReducer(state = initialState, action) {
     }
     case "load-error": {
       return { ...state, error: true };
+    }
+    case "search-query": {
+      return { ...state, searchQuery: action.payload };
     }
 
     default:

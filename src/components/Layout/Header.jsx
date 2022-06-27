@@ -9,6 +9,8 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import classes from "./Header.module.scss";
+import { useDispatch } from "react-redux";
+import { searchQuery } from "../../store/news/news.actions";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,6 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const dispatch = useDispatch();
   return (
     <Box className={classes.root} sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -72,13 +75,14 @@ export default function SearchAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            News test app
           </Typography>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              onChange={(e) => dispatch(searchQuery(e.target.value))}
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
