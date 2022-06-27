@@ -1,7 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { loadPosts } from "./store/news/news.actions";
 
 function App() {
+  const news = useSelector((state) => state.news);
+  const { loading, items } = news;
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +22,11 @@ function App() {
         >
           Learn React
         </a>
+        {/* <p>{items}</p> */}
+
+        <button onClick={() => dispatch(loadPosts())}>
+          {loading ? "loading..." : "load post"}
+        </button>
       </header>
     </div>
   );
