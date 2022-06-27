@@ -6,6 +6,7 @@ import { loadPosts } from "./store/news/news.actions";
 function App() {
   const news = useSelector((state) => state.news);
   const { loading, items } = news;
+  console.log("log>", items);
   const dispatch = useDispatch();
   return (
     <div className="App">
@@ -22,7 +23,9 @@ function App() {
         >
           Learn React
         </a>
-        {/* <p>{items}</p> */}
+        {/* {items.map((item, index) => (
+          <p>{item.title}</p>
+        ))} */}
 
         <button onClick={() => dispatch(loadPosts())}>
           {loading ? "loading..." : "load post"}
