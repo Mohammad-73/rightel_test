@@ -13,16 +13,7 @@ import {
 import Moment from "react-moment";
 
 export default function PostCard({ item }) {
-  const {
-    author,
-    content,
-    description,
-    publishedAt,
-    source,
-    title,
-    url,
-    urlToImage,
-  } = item;
+  const { author, description, publishedAt, title, urlToImage } = item;
   const dispatch = useDispatch();
   return (
     <Card sx={{ maxWidth: 345 }}>

@@ -11,7 +11,6 @@ import Moment from "react-moment";
 const SinglePageNews = () => {
   const singlePageNews = useSelector((state) => state.singlePageNews);
   const news = useSelector((state) => state.news);
-  console.log("log>", news);
   const { loading, post } = singlePageNews;
   return (
     <div className={classes.root}>

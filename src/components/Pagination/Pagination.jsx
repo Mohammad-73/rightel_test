@@ -5,7 +5,7 @@ import classes from "./Pagination.module.scss";
 
 export default function PaginationRounded({
   perPage,
-  count,
+  count = [],
   page,
   handlePageChange,
   variant,
