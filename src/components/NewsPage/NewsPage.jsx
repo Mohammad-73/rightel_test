@@ -39,7 +39,7 @@ const NewsPage = () => {
       ) : loading ? (
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((skeleton, inx) => (
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+            <Grid key={inx} item xs={12} sm={12} md={6} lg={3}>
               <PostSkeleton />
             </Grid>
           ))}
@@ -47,7 +47,7 @@ const NewsPage = () => {
       ) : (
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {_DATA?.currentData()?.map((item, index) => (
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+            <Grid key={index} item xs={12} sm={12} md={6} lg={3}>
               <PostCard item={item} />
             </Grid>
           ))}
