@@ -6,11 +6,11 @@ import PostCard from "../PostCard/PostCard";
 import { Grid, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 const SinglePageNews = () => {
   const singlePageNews = useSelector((state) => state.singlePageNews);
   const news = useSelector((state) => state.news);
-  console.log("log>", news);
   const { loading, post } = singlePageNews;
   return (
     <div className={classes.root}>
@@ -41,7 +41,9 @@ const SinglePageNews = () => {
                     />
                     <h3>{post.author}</h3>
                   </span>
-                  <h3>{post.publishedAt}</h3>
+                  <h3>
+                    <Moment format="YYYY/MM/DD hh:mm" date={post.publishedAt} />
+                  </h3>
                 </div>
                 <div className={classes.desc}>
                   <p>{post.description}</p>

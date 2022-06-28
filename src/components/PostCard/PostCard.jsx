@@ -10,18 +10,10 @@ import {
   startLoadingSinglePost,
   selectOnePost,
 } from "../../store/singlePageNews/singlePageNews.actions";
+import Moment from "react-moment";
 
 export default function PostCard({ item }) {
-  const {
-    author,
-    content,
-    description,
-    publishedAt,
-    source,
-    title,
-    url,
-    urlToImage,
-  } = item;
+  const { author, description, publishedAt, title, urlToImage } = item;
   const dispatch = useDispatch();
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -33,10 +25,13 @@ export default function PostCard({ item }) {
           alt={title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" align="left" component="div">
             {author}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" align="left" color="text.secondary">
+            <Moment format="YYYY/MM/DD hh:mm" date={publishedAt} />
+          </Typography>
+          <Typography variant="body2" align="left" color="text.secondary">
             {description}
           </Typography>
         </CardContent>
