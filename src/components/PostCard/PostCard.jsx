@@ -4,6 +4,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  startLoadingSinglePost,
+  selectOnePost,
+} from "../../store/singlePageNews/singlePageNews.actions";
 
 export default function PostCard({ item }) {
   const {
@@ -16,6 +22,7 @@ export default function PostCard({ item }) {
     url,
     urlToImage,
   } = item;
+  const dispatch = useDispatch();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -34,11 +41,20 @@ export default function PostCard({ item }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Read more
-        </Button>
-      </CardActions>
+      <Link to="/single-post">
+        <CardActions>
+          <Button
+            onClick={() => {
+              dispatch(startLoadingSinglePost());
+              dispatch(selectOnePost(item));
+            }}
+            size="small"
+            color="primary"
+          >
+            Read more
+          </Button>
+        </CardActions>
+      </Link>
     </Card>
   );
 }

@@ -1,13 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NewsPage from "../NewsPage/NewsPage";
+import SinglePageNews from "../SinglePageNews/SinglePageNews";
 
 const Content = () => {
   return (
     <div>
       <Routes>
         <Route path="/" exact element={<NewsPage />} />
-        {/* <Route path="/student" exact element={<StudentPage />} /> */}
+        <Route path="/single-post" exact element={<SinglePageNews />} />
       </Routes>
     </div>
   );
