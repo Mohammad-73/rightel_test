@@ -5,7 +5,7 @@ const apiKey = "ab782a5e119d4c3881ea62ebbaca2363";
 const url =
   "https://newsapi.org/v2/everything?" +
   "from=2022-06-27&" +
-  "sortBy=popularity&" +
+  "sortBy=publishedAt&" +
   "apiKey=ab782a5e119d4c3881ea62ebbaca2363";
 
 export const startLoading = () => {

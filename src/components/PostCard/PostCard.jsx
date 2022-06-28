@@ -38,7 +38,7 @@ export default function PostCard({ item }) {
             {author}
           </Typography>
           <Typography variant="body1" align="left" color="text.secondary">
-            <Moment format="YYYY/MM/DD" date={publishedAt} />
+            <Moment format="YYYY/MM/DD hh:mm" date={publishedAt} />
           </Typography>
           <Typography variant="body2" align="left" color="text.secondary">
             {description}
